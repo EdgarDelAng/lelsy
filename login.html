@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Médica | Iniciar sesión</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<main class="pagina-login">
+    <section class="lado-izquierdo">
+        <div class="contenido-izquierdo">
+            <div class="marca">
+                <div class="logo"><span>+</span></div>
+                <div class="nombre-marca">
+                    <h1>Agenda Médica</h1>
+                    <p>Tu salud, nuestra prioridad</p>
+                </div>
+            </div>
+            <div class="bienvenida">
+                <h2>Bienvenido a tu <strong>Agenda Médica</strong></h2>
+                <p>Gestiona pacientes, citas, consultas, recetas e historiales de forma fácil, segura y eficiente.</p>
+            </div>
+            <div class="ilustracion">
+                <img src="img/agenda-medica ilustracion.png" alt="Ilustración"
+                     onerror="this.style.display='none'">
+            </div>
+        </div>
+    </section>
+
+    <section class="lado-derecho">
+        <div class="tarjeta-login">
+            <div class="encabezado-login">
+                <h2>Iniciar sesión</h2>
+                <p>Selecciona tu tipo de acceso para continuar</p>
+            </div>
+
+            <div class="seccion-rol">
+                <label>Selecciona tu rol</label>
+                <div class="roles">
+                    <button type="button" class="rol activo" id="btnAdministrador" data-rol="Administrador">
+                        <div class="icono-rol administrador-icono">👤</div>
+                        <div class="informacion-rol">
+                            <strong>Administrador</strong>
+                            <span>Acceso completo al sistema</span>
+                        </div>
+                    </button>
+                    <button type="button" class="rol" id="btnUsuario" data-rol="Usuario">
+                        <div class="icono-rol usuario-icono">🩺</div>
+                        <div class="informacion-rol">
+                            <strong>Médico</strong>
+                            <span>Acceso al área médica</span>
+                        </div>
+                    </button>
+                    <button type="button" class="rol" id="btnPaciente" data-rol="Paciente">
+                        <div class="icono-rol paciente-icono">🧑‍🦱</div>
+                        <div class="informacion-rol">
+                            <strong>Paciente</strong>
+                            <span>Agenda tus citas</span>
+                        </div>
+                    </button>
+                </div>
+                <input type="hidden" id="rolSeleccionado" value="Administrador">
+            </div>
+
+            <form id="formLogin" novalidate>
+                <div class="campo">
+                    <label for="correo">Correo electrónico</label>
+                    <div class="input-con-icono">
+                        <span class="icono-input">✉</span>
+                        <input type="email" id="correo" placeholder="Ingresa tu correo electrónico" required>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="password">Contraseña</label>
+                    <div class="input-con-icono">
+                        <span class="icono-input">🔒</span>
+                        <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+                        <button type="button" class="boton-ojo" id="mostrarPassword">👁</button>
+                    </div>
+                </div>
+
+                <div class="opciones-login">
+                    <label class="recordarme">
+                        <input type="checkbox" id="recordarme">
+                        <span>Recordarme</span>
+                    </label>
+                    <button type="button" class="olvidaste" id="recuperarPassword">¿Olvidaste tu contraseña?</button>
+                </div>
+
+                <button type="submit" class="boton-login">Iniciar sesión</button>
+            </form>
+
+            <div class="separador">
+                <span></span><p>¿No tienes cuenta?</p><span></span>
+            </div>
+
+            <div class="botones-registro">
+                <button type="button" class="boton-registro" id="crearUsuario">
+                    <span class="icono-registro usuario-color">🩺</span>
+                    Crear cuenta como Médico
+                </button>
+                <button type="button" class="boton-registro" id="crearPaciente">
+                    <span class="icono-registro paciente-color">🧑‍🦱</span>
+                    Crear cuenta como Paciente
+                </button>
+            </div>
+
+            <div class="cuentas-demo">
+                <p class="cuentas-demo-titulo">🔑 Cuentas de prueba</p>
+                <div class="cuentas-demo-grid">
+                    <div class="cuenta-demo">
+                        <strong>Administrador</strong>
+                        <span>admin@agendamedica.com</span>
+                        <code>admin123</code>
+                    </div>
+                    <div class="cuenta-demo">
+                        <strong>Médico</strong>
+                        <span>usuario@agendamedica.com</span>
+                        <code>usuario123</code>
+                    </div>
+                    <div class="cuenta-demo">
+                        <strong>Paciente</strong>
+                        <span>paciente@agendamedica.com</span>
+                        <code>paciente123</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- ==========================================
+     MODAL DE REGISTRO (SIN CONTRASEÑA)
+========================================== -->
+<div class="modal-login" id="modalRegistro">
+    <div class="modal-login-contenido">
+        <div class="modal-login-header">
+            <h3 id="tituloRegistro">Crear cuenta</h3>
+            <button type="button" class="modal-login-cerrar" id="cerrarRegistro">✕</button>
+        </div>
+        <form id="formRegistro" class="modal-login-body" novalidate>
+            <div class="campo" data-campo="regNombre">
+                <label for="regNombre">Nombre completo <span class="req">*</span></label>
+                <input type="text" id="regNombre" class="input-login" placeholder="Ej. Ana López García" maxlength="60" required>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="campo" data-campo="regCorreo">
+                <label for="regCorreo">Correo electrónico <span class="req">*</span></label>
+                <input type="email" id="regCorreo" class="input-login" placeholder="correo@ejemplo.com" required>
+                <small class="error-msg"></small>
+            </div>
+
+            <div class="campo" data-campo="regTelefono">
+                <label for="regTelefono">Teléfono <span class="req">*</span></label>
+                <input type="tel" id="regTelefono" class="input-login" placeholder="81-1234-5678" maxlength="12" inputmode="numeric" required>
+                <small class="error-msg"></small>
+            </div>
+
+            <p style="font-size:12px;color:#53627d;background:#f7faff;padding:10px 12px;border-radius:8px;border:1px dashed #cdd9ee;margin-bottom:10px">
+                💡 La contraseña se te asignará automáticamente. Podrás cambiarla después desde tu perfil.
+            </p>
+
+            <div class="modal-login-footer">
+                <button type="button" class="btn-login-secundario" id="cancelarRegistro">Cancelar</button>
+                <button type="submit" class="btn-login-primario">Crear cuenta</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/utils.js"></script>
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="login.js"></script>
+</body>
+</html>
